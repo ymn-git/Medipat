@@ -96,15 +96,6 @@ class Graphics(ctk.CTk):
         patient_names = [patient.name for patient in self.data.get_all_patients()]
         self.patient_combo.configure(values=patient_names)
 
-    #def actualizar_combobox(self):
-    #   self.patient_combo.configure(values=self.data.get_all_patients())
-
-    # El error AttributeError: 'Patient' object has no attribute 'ljust'
-    # ocurria porque el ComboBox esperaba una lista de strings (los nombres de los pacientes)
-    # pero self.data.get_all_patients() estaba devolviendo una lista de objetos Patient.
-    # Ahora al darle al combobox el value patient_names que dentro "solamente" recibe el atributo name de cada "objeto" paciente
-    # de la lista y ese atributo es un string funciona
-
     def add_medicine_log(self):
         medicine_date = self.entry_medicine_date.get()
         medicine_time = self.entry_medicine_time.get()
@@ -158,7 +149,3 @@ class Graphics(ctk.CTk):
         self.show_logs_text.delete("1.0", ctk.END)  # Limpiar el contenido anterior
         for log in log_found:
             self.show_logs_text.insert(ctk.END, f"Paciente {selected_patient} {log.date} - {log.time} - {log.symptom}\n")  # Mostrar registros
-
-        #ahora falta usar el calendar y date de tkinter
-        #acomodar visualmente las cosas en frames
-        
